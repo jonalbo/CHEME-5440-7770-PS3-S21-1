@@ -35,15 +35,101 @@ function generate_problem_dictionary()
 	# Load the stoichiometric network from disk -
 	path_to_network_file = joinpath(_PATH_TO_CONFIG,"Network.dat")
 	stoichiometric_matrix = readdlm(path_to_network_file);
+	#print(stoichiometric_matrix)
 
 	# What is the system dimension? -
 	(number_of_species,number_of_reactions) = size(stoichiometric_matrix)
+	#print(size(stoichiometric_matrix)) #shows 18x21 so input is good
 
 	# Setup the flux bounds array -
 	flux_bounds_array = zeros(number_of_reactions,2)
 	# TODO: update the flux_bounds_array for each reaction in your network
 	# TODO: col 1 => lower bound
 	# TODO: col 2 => upper bound
+
+	# Vmax [mmol/gdw-hr] v1
+	flux_bounds_array[1,1] = 0
+	flux_bounds_array[1,2] = 203*3600*0.01*(1/1000) #mmol/gDW-hr
+
+	# Vmax [mmol/gdw-hr] v2
+	flux_bounds_array[2,1] = 0
+	flux_bounds_array[2,2] = 34.5*3600*0.01*(1/1000) #mmol/gDW-hr
+
+	# Vmax [mmol/gdw-hr] v3
+	flux_bounds_array[3,1] = 0
+	flux_bounds_array[3,2] = 249*3600*0.01*(1/1000) #mmol/gDW-hr
+
+	# Vmax [mmol/gdw-hr] v4
+	flux_bounds_array[4,1] = 0
+	flux_bounds_array[4,2] = 88.1*3600*0.01*(1/1000) #mmol/gDW-hr
+
+	# Vmax [mmol/gdw-hr] v5f
+	flux_bounds_array[5,1] = 0
+	flux_bounds_array[5,2] = 13.7*3600*0.01*(1/1000) #mmol/gDW-hr
+
+	# Vmax [mmol/gdw-hr] v5r
+	flux_bounds_array[6,1] = 0
+	flux_bounds_array[6,2] = 13.7*3600*0.01*(1/1000) #mmol/gDW-hr
+
+	# Vmax [mmol/gdw-hr] 7
+	flux_bounds_array[7,1] = 0
+	flux_bounds_array[7,2] = 10
+
+	# Vmax [mmol/gdw-hr] 8
+	flux_bounds_array[8,1] = 0
+	flux_bounds_array[8,2] = 10
+
+	# Vmax [mmol/gdw-hr] 9
+	flux_bounds_array[9,1] = 0
+	flux_bounds_array[9,2] = 10
+
+	# Vmax [mmol/gdw-hr] 10
+	flux_bounds_array[10,1] = 0
+	flux_bounds_array[10,2] = 10
+
+	# Vmax [mmol/gdw-hr] 11
+	flux_bounds_array[11,1] = 0
+	flux_bounds_array[11,2] = 10
+
+	# Vmax [mmol/gdw-hr] 12
+	flux_bounds_array[12,1] = 0
+	flux_bounds_array[12,2] = 10
+
+	# Vmax [mmol/gdw-hr] 13
+	flux_bounds_array[13,1] = 0
+	flux_bounds_array[13,2] = 10
+
+	# Vmax [mmol/gdw-hr] 14 H2O allow water exchange
+	flux_bounds_array[14,1] = 0
+	flux_bounds_array[14,2] = 10
+
+	# Vmax [mmol/gdw-hr] 15	H2O allow water exchange
+	flux_bounds_array[15,1] = 0
+	flux_bounds_array[15,2] = 10
+
+	# Vmax [mmol/gdw-hr] 16
+	flux_bounds_array[16,1] = 0
+	flux_bounds_array[16,2] = 10
+
+	# Vmax [mmol/gdw-hr] 17
+	flux_bounds_array[17,1] = 0
+	flux_bounds_array[17,2] = 10
+
+	# Vmax [mmol/gdw-hr] 18	
+	flux_bounds_array[18,1] = 0
+	flux_bounds_array[18,2] = 10
+
+	# Vmax [mmol/gdw-hr] 19	
+	flux_bounds_array[19,1] = 0
+	flux_bounds_array[19,2] = 10
+
+	# Vmax [mmol/gdw-hr] 20
+	flux_bounds_array[20,1] = 0
+	flux_bounds_array[20,2] = 10
+
+	# Vmax [mmol/gdw-hr] 21	
+	flux_bounds_array[21,1] = 0
+	flux_bounds_array[21,2] = 10
 	# TODO: each row is a reaction
 
 	# Setup default species bounds array -
@@ -56,6 +142,7 @@ function generate_problem_dictionary()
 
 	# Setup the objective coefficient array -
 	objective_coefficient_array = zeros(number_of_reactions)
+	objective_coefficient_array[10] = -1
 	# TODO: update me to maximize Urea production (Urea leaving the virtual box) 
 	# TODO: if is_minimum_flag = true => put a -1 in the index for Urea export
 	
